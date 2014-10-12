@@ -19,7 +19,8 @@ shinyUI(pageWithSidebar(
                     max = 25, value = 20, step = 5)
     ),
     mainPanel(
-        verbatimTextOutput("dayType"), 
+#         verbatimTextOutput("dayType"), 
+#         verbatimTextOutput("dates"), 
         plotOutput('newHist')
     )
 ))

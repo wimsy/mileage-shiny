@@ -18,8 +18,13 @@ trips$day.type[trips$day %in% c('Saturday', 'Sunday')] <- 'Weekend'
 shinyServer(
 
     function(input, output) {
-        output$dayType <- renderPrint({input$dayType})
-        plotTrips <- reactive({subset(trips, day.type %in% input$dayType)})
+#         output$dayType <- renderPrint({input$dayType})
+#         output$dates <- renderPrint({ymd(input$dates[1]) <= trips$Trip.Started.At[1]})
+        plotDates <- reactive({subset(trips, 
+                                      ymd(input$dates[1], tz = tz)<=Trip.Started.At & 
+                                          ymd(input$dates[2], tz = tz)>=Trip.Started.At)})
+        plotTrips <- reactive({subset(plotDates(), day.type %in% input$dayType)})
+ 
         output$newHist <- renderPlot({
             hist(plotTrips()$trip.minutes, 
                  xlab = 'trip time (minutes)', 
