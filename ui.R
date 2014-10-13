@@ -16,7 +16,8 @@ shinyUI(pageWithSidebar(
                            choices = list("Weekday", "Weekend"),
                            selected = c('Weekday', 'Weekend')), 
         numericInput("nbins", label = h4("Number of bins"), min = 5, 
-                    max = 25, value = 20, step = 5)
+                    max = 25, value = 20, step = 5), 
+        p("This app lets you explore some trip data I collected using a device and application from", a(href="https://www.automatic.com/", "Automatic."), "You can filter on specific date ranges, pick bin sizes for the histogram, and focus on only weekend or weekday trips. Can you guess how long my daily commute is?")
     ),
     mainPanel(
 #         verbatimTextOutput("dayType"), 
